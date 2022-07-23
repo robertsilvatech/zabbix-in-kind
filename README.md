@@ -54,7 +54,7 @@ kubectl apply -f zabbix-web-mysql/service.yaml
     ```
     kubectl port-forward deployment/zbx-web-mysql 9000:8080
     ```
-    `NOTA: Se fechar encerrar o terminal, o acesso fica indisponível`
+    `NOTA: Se encerrar o terminal, o acesso fica indisponível`
 
     - **Opção 2:**
 

@@ -39,7 +39,7 @@ kubectl cluster-info --context kind-monitoring
 
 
 ```
-kubectl apply -f mysql/deployment.yaml 
+kubectl apply -f mysql/deployment.yaml
 kubectl apply -f mysql/service.yaml
 kubectl apply -f zabbix-server-mysql/deployment.yaml
 kubectl apply -f zabbix-server-mysql/service.yaml
@@ -49,28 +49,28 @@ kubectl apply -f zabbix-web-mysql/service.yaml
 
 - Para acessar o serviço
 
-**Opção 1:**
+    - **Opção 1:**
 
-```
-kubectl port-forward deployment/zbx-web-mysql 9000:8080
-```
-`NOTA: Se fechar encerrar o terminal, o acesso fica indisponível`
+    ```
+    kubectl port-forward deployment/zbx-web-mysql 9000:8080
+    ```
+    `NOTA: Se fechar encerrar o terminal, o acesso fica indisponível`
 
-**Opção 2:**
+    - **Opção 2:**
 
-- Acessando o IP de um dos nós
+    - Acessando o IP de um dos nós
 
-```
-kubectl get nodes -o wide
-```
+    ```
+    kubectl get nodes -o wide
+    ```
 
-Pegue o IP e acesso via navegador.
+    Pegue o IP e acesso via navegador.
 
-- Deletar cluster Kind
+    - Deletar cluster Kind
 
-```
-kind delete cluster --name monitoring
-```
+    ```
+    kind delete cluster --name monitoring
+    ```
 
 ## Agilizar o deploy
 
@@ -82,9 +82,9 @@ kind delete cluster --name monitoring
 docker pull mysql
 docker load docker-image mysql --name monitoring
 docker pull zabbix/zabbix-server-mysql:ol-6.0.6
-kind load docker-image zabbix/zabbix-server-mysql:ol-6.0.6 --name monitoring
+kind load docker-image zabbix/zabbix-server-mysql:ol-6.0.6 --name meetup
 docker pull zabbix/zabbix-web-nginx-mysql
-kind load docker-image zabbix/zabbix-web-nginx-mysql:ol-6.0.6 --name monitoring
+kind load docker-image zabbix/zabbix-web-nginx-mysql:ol-6.0.6 --name meetup
 ```
 
 ## Próximos passos

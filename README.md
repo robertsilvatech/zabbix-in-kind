@@ -58,7 +58,7 @@ kubectl apply -f zabbix-web-mysql/service.yaml
 
     - **Opção 2:**
 
-    - Acessando o IP de um dos nós
+    Acessando o IP de um dos nós
 
     ```
     kubectl get nodes -o wide

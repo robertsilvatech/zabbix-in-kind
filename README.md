@@ -89,3 +89,5 @@ kind load docker-image zabbix/zabbix-web-nginx-mysql:ol-6.0.6 --name meetup
 
 ## Próximos passos
 
+- Compartilhar mais sobre o deploy utilizando Helm.
+

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zbx-web-mysql
+  labels:
+    app: zbx-web-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zbx-web-mysql
+  template:
+    metadata:
+      labels:
+        app: zbx-web-mysql
+    spec:
+      containers:
+      - image: zabbix/zabbix-web-nginx-mysql:ol-6.0.6
+        name: zabbix-web
+        env:
+          - name: ZBX_SERVER_HOST
+            value: zbx-server-mysql-service
+          - name: DB_SERVER_HOST
+            value: zbx-db-mysql-service
+          - name: MYSQL_DATABASE
+            value: zabbix
+          - name: MYSQL_USER
+            value: zabbix
+          - name: MYSQL_PASSWORD
+            value: zabbix

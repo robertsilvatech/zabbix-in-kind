@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zbx-db-mysql
+  name: zbx-db-mysql-service
+spec:
+  selector:
+    app: zbx-db-mysql
+  type: ClusterIP  
+  ports:
+  - port: 3306
+    targetPort: 3306

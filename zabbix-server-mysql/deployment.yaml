@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zbx-server-mysql
+  labels:
+    app: zbx-server-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zbx-server-mysql
+  template:
+    metadata:
+      labels:
+        app: zbx-server-mysql
+    spec:
+      containers:
+      - image: zabbix/zabbix-server-mysql:ol-6.0.6
+        name: zabbix-server
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 10051
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 500m
+            memory: 500Mi
+          limits:
+            cpu: 1000m
+            memory: 1000Mi
+        readinessProbe:
+          tcpSocket:
+            port: 10051
+          initialDelaySeconds: 120
+          periodSeconds: 10
+          failureThreshold: 8
+        livenessProbe:
+          tcpSocket:
+            port: 10051
+          initialDelaySeconds: 120
+          timeoutSeconds: 1
+        env:
+          - name: DB_SERVER_HOST
+            value: zbx-db-mysql-service
+          - name: MYSQL_DATABASE
+            value: zabbix
+          - name: MYSQL_USER
+            value: zabbix
+          - name: MYSQL_PASSWORD
+            value: zabbix

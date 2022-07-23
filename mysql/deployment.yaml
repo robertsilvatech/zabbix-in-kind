@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zbx-db-mysql
+  labels:
+    app: zbx-db-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zbx-db-mysql
+  template:
+    metadata:
+      labels:
+        app: zbx-db-mysql
+    spec:
+      containers:
+      - image: mysql:8.0.28-oracle
+        name: mysql
+        args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_bin"]
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: mysqlroot
+          - name: MYSQL_DATABASE
+            value: zabbix
+          - name: MYSQL_USER
+            value: zabbix
+          - name: MYSQL_PASSWORD
+            value: zabbix

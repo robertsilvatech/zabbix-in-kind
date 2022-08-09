@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  {{- if .Values.metadata.labels }}
+  labels:
+    {{- toYaml .Values.metadata.labels | nindent 4 }}
+  {{- end }}
+  {{- if .Values.metadata.annotations }}
+  annotations:
+    {{- toYaml .Values.metadata.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.image.repository}}:{{ .Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 10051
+          protocol: TCP
+        {{- if .Values.spec.resources }}
+        resources:
+        {{- toYaml .Values.spec.resources | nindent 10 }}
+        {{- end }}
+        {{- if .Values.spec.readinessProbe }}
+        readinessProbe:
+        {{- toYaml .Values.spec.readinessProbe | nindent 10}}
+        {{- end }}
+        {{- if .Values.spec.livenessProbe }}
+        livenessProbe:
+        {{- toYaml .Values.spec.livenessProbe | nindent 10}}
+        {{- end }}
+        {{- include "chart.env" . | indent 8 }}

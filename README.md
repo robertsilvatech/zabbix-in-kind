@@ -87,6 +87,23 @@ docker pull zabbix/zabbix-web-nginx-mysql
 kind load docker-image zabbix/zabbix-web-nginx-mysql:ol-6.0.6 --name meetup
 ```
 
+## Deploy com helm
+
+### zabbix-server
+
+O helm encontra-se na pasta [helm](./zabbix-server-mysql/helm)
+
+```
+helm install zabbix-server-mysql ./zabbix-server-mysql/helm
+```
+
+Ou
+
+```
+helm upgrade --install zabbix-server-mysql ./zabbix-server-mysql/helm
+```
+
+
 ## Próximos passos
 
 - Compartilhar mais sobre o deploy utilizando Helm.

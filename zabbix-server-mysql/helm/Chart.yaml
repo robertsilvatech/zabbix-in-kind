@@ -1,0 +1,15 @@
+apiVersion: v2
+name: zabbix-server
+description: A simple helm chart for using Zabbix on Kubernetes or Openshift
+version: 0.0.1
+keywords:
+  - zabbix
+  - zabbix server
+  - monitoring
+  - jlcp
+sources:
+  - https://github.com/robertsilvatech/charts
+maintainers:
+  - name: Robert Silva
+    email: robert.silva@jlcp.com.br
+    
